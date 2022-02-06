@@ -4,19 +4,39 @@
     <meta charset="utf-8" />
     <title>My blog</title>
     <style>
-      * { padding: 0; margin: 0; }
-      canvas { background: #eee; display: block; margin: 0 auto; }
-      h1 {text-align: center;}
+        * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; }
+        h1 {text-align: center;}
+        .button {
+            background-color: #0095DD; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 30px;
+        }
+        .center {
+            /* outline: dashed 1px black; */
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
 
 <canvas id="myCanvas" width="480" height="320"></canvas>
-
+<div class="center">
+    <button class="button" id="leftBtn">Left</button> <button class="button" id="rightBtn">Right</button>
+</div>
 <h1 >Coming soon...</h1>
 
 <script>
     var canvas = document.getElementById("myCanvas");
+    const leftButton = document.getElementById("leftBtn");
+    const rightButton = document.getElementById("rightBtn");
     var ctx = canvas.getContext("2d");
     var ballRadius = 10;
     var x = canvas.width/2;
@@ -49,6 +69,22 @@
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
     document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    leftButton.addEventListener("mousedown", function() {
+        leftPressed = true;
+    });
+
+    leftButton.addEventListener("mouseup", function() {
+        leftPressed = false;
+    });
+
+    rightButton.addEventListener("mousedown", function() {
+        rightPressed = true;
+    });
+
+    rightButton.addEventListener("mouseup", function() {
+        rightPressed = false;
+    });
 
     function keyDownHandler(e) {
         if(e.key == "Right" || e.key == "ArrowRight") {
